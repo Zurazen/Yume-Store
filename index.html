@@ -5,263 +5,377 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Yume Store</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
 }
 
 body{
-    background:#0a0a0f;
-    color:white;
+background:#05010d;
+color:white;
+overflow-x:hidden;
+}
+
+body::before{
+content:'';
+position:fixed;
+width:500px;
+height:500px;
+background:#8a2be2;
+filter:blur(220px);
+opacity:.25;
+top:-200px;
+left:-150px;
+z-index:-1;
+}
+
+body::after{
+content:'';
+position:fixed;
+width:500px;
+height:500px;
+background:#6f00ff;
+filter:blur(220px);
+opacity:.2;
+bottom:-250px;
+right:-150px;
+z-index:-1;
 }
 
 header{
-    padding:20px 8%;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    border-bottom:1px solid rgba(255,255,255,.1);
+position:fixed;
+top:0;
+width:100%;
+padding:20px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(0,0,0,.4);
+backdrop-filter:blur(15px);
+z-index:999;
 }
 
 .logo{
-    font-size:28px;
-    font-weight:700;
-    color:#b56cff;
+font-size:30px;
+font-weight:800;
+color:#b66cff;
+text-shadow:0 0 15px #b66cff;
 }
 
 nav a{
-    color:white;
-    text-decoration:none;
-    margin-left:20px;
+text-decoration:none;
+color:white;
+margin-left:25px;
+font-weight:500;
+transition:.3s;
+}
+
+nav a:hover{
+color:#b66cff;
 }
 
 .hero{
-    min-height:90vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    padding:30px;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:0 20px;
 }
 
-.hero-content h1{
-    font-size:4rem;
-    line-height:1.1;
-    margin-bottom:15px;
+.hero h1{
+font-size:5rem;
+line-height:1.1;
+font-weight:800;
 }
 
-.hero-content span{
-    color:#b56cff;
+.hero span{
+color:#b66cff;
+text-shadow:0 0 25px #b66cff;
 }
 
-.hero-content p{
-    color:#cfcfcf;
-    margin-bottom:30px;
+.hero p{
+margin-top:20px;
+color:#d6d6d6;
+font-size:1.1rem;
 }
 
 .btn{
-    display:inline-block;
-    padding:14px 30px;
-    background:#a855f7;
-    color:white;
-    text-decoration:none;
-    border-radius:10px;
-    font-weight:600;
-    transition:.3s;
+display:inline-block;
+margin-top:30px;
+padding:15px 35px;
+background:#9d4edd;
+color:white;
+text-decoration:none;
+border-radius:12px;
+font-weight:600;
+transition:.3s;
 }
 
 .btn:hover{
-    transform:translateY(-3px);
-    box-shadow:0 0 20px #a855f7;
+transform:translateY(-5px);
+box-shadow:0 0 25px #9d4edd;
 }
 
-.services{
-    padding:80px 8%;
+.section{
+padding:100px 8%;
 }
 
 .title{
-    text-align:center;
-    margin-bottom:50px;
+text-align:center;
+margin-bottom:50px;
 }
 
 .title h2{
-    font-size:2.5rem;
-    color:#b56cff;
+font-size:3rem;
+color:#b66cff;
 }
 
-.card-container{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
 }
 
 .card{
-    background:#12121a;
-    border:1px solid rgba(181,108,255,.2);
-    padding:25px;
-    border-radius:15px;
-    transition:.3s;
+background:rgba(255,255,255,.03);
+border:1px solid rgba(182,108,255,.25);
+padding:30px;
+border-radius:20px;
+transition:.4s;
 }
 
 .card:hover{
-    transform:translateY(-5px);
-    box-shadow:0 0 20px rgba(181,108,255,.3);
+transform:translateY(-8px);
+box-shadow:0 0 25px rgba(182,108,255,.3);
 }
 
 .card h3{
-    color:#b56cff;
-    margin-bottom:10px;
+margin-bottom:10px;
+color:#b66cff;
 }
 
-.about{
-    padding:80px 8%;
-    text-align:center;
+.portfolio{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:20px;
 }
 
-.about p{
-    max-width:700px;
-    margin:auto;
-    color:#cfcfcf;
+.portfolio-item{
+height:220px;
+border-radius:20px;
+background:linear-gradient(135deg,#8a2be2,#3b0764);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:1.3rem;
+font-weight:700;
 }
 
-.contact{
-    padding:80px 8%;
-    text-align:center;
+.testimonials{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:20px;
 }
 
-.whatsapp{
-    font-size:1.3rem;
-    margin-top:15px;
+.testimonial{
+background:rgba(255,255,255,.03);
+padding:25px;
+border-radius:20px;
+border:1px solid rgba(182,108,255,.25);
+}
+
+.cta{
+text-align:center;
+}
+
+.cta h2{
+font-size:3rem;
+margin-bottom:15px;
 }
 
 footer{
-    text-align:center;
-    padding:20px;
-    border-top:1px solid rgba(255,255,255,.1);
-    color:#aaa;
+padding:30px;
+text-align:center;
+border-top:1px solid rgba(255,255,255,.1);
+color:#aaa;
 }
 
-.glow{
-    position:fixed;
-    width:400px;
-    height:400px;
-    background:#8b2cf5;
-    filter:blur(180px);
-    opacity:.2;
-    z-index:-1;
+.whatsapp{
+position:fixed;
+right:20px;
+bottom:20px;
+width:65px;
+height:65px;
+background:#25D366;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:28px;
+text-decoration:none;
+color:white;
+box-shadow:0 0 20px rgba(37,211,102,.5);
 }
 
-.glow:nth-child(1){
-    top:-100px;
-    left:-100px;
+@media(max-width:768px){
+
+.hero h1{
+font-size:3rem;
 }
 
-.glow:nth-child(2){
-    bottom:-100px;
-    right:-100px;
+nav{
+display:none;
 }
+
+.title h2{
+font-size:2.2rem;
+}
+
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="glow"></div>
-<div class="glow"></div>
-
 <header>
-    <div class="logo">YUME STORE</div>
+<div class="logo">YUME STORE</div>
 
-    <nav>
-        <a href="#layanan">Layanan</a>
-        <a href="#tentang">Tentang</a>
-        <a href="#kontak">Kontak</a>
-    </nav>
+<nav>
+<a href="#layanan">Layanan</a>
+<a href="#portfolio">Portfolio</a>
+<a href="#testimoni">Testimoni</a>
+<a href="#kontak">Kontak</a>
+</nav>
 </header>
 
 <section class="hero">
-    <div class="hero-content">
-        <h1>Desain, Website &<br><span>Kelola Turnamen</span></h1>
 
-        <p>
-            Solusi digital untuk bisnis gaming,
-            turnamen esports, UMKM, dan komunitas.
-        </p>
+<div>
 
-        <a href="https://wa.me/6288804169277" class="btn">
-            Hubungi Sekarang
-        </a>
-    </div>
-</section>
+<h1>
+Digital Solution<br>
+Untuk <span>Gaming & UMKM</span>
+</h1>
 
-<section class="services" id="layanan">
+<p>
+Jasa Desain • Website • Kelola Turnamen
+</p>
 
-    <div class="title">
-        <h2>Layanan Kami</h2>
-    </div>
+<a href="https://wa.me/6288804169277" class="btn">
+Hubungi Sekarang
+</a>
 
-    <div class="card-container">
-
-        <div class="card">
-            <h3>🎨 Jasa Desain</h3>
-            <p>Poster turnamen, top up game, joki rank, UMKM dan promosi bisnis.</p>
-        </div>
-
-        <div class="card">
-            <h3>🌐 Website</h3>
-            <p>Landing page modern untuk bisnis, event, komunitas dan toko online.</p>
-        </div>
-
-        <div class="card">
-            <h3>🏆 Turnamen</h3>
-            <p>Kelola peserta, bracket, poster, dan kebutuhan event esports.</p>
-        </div>
-
-    </div>
+</div>
 
 </section>
 
-<section class="about" id="tentang">
+<section class="section" id="layanan">
 
-    <div class="title">
-        <h2>Tentang Yume Store</h2>
-    </div>
+<div class="title">
+<h2>Layanan Kami</h2>
+</div>
 
-    <p>
-        Yume Store adalah layanan digital yang menyediakan jasa desain,
-        pembuatan website, dan pengelolaan turnamen esports dengan harga
-        terjangkau serta pengerjaan cepat.
-    </p>
+<div class="cards">
+
+<div class="card">
+<h3>🎨 Jasa Desain</h3>
+<p>Poster gaming, turnamen, top up, UMKM dan berbagai kebutuhan promosi.</p>
+</div>
+
+<div class="card">
+<h3>🌐 Pembuatan Website</h3>
+<p>Landing page modern dan website bisnis dengan tampilan profesional.</p>
+</div>
+
+<div class="card">
+<h3>🏆 Kelola Turnamen</h3>
+<p>Form peserta, bracket, jadwal pertandingan hingga pengumuman juara.</p>
+</div>
+
+</div>
 
 </section>
 
-<section class="contact" id="kontak">
+<section class="section" id="portfolio">
 
-    <div class="title">
-        <h2>Hubungi Kami</h2>
-    </div>
+<div class="title">
+<h2>Portfolio</h2>
+</div>
 
-    <p>Siap membantu kebutuhan desain dan website Anda.</p>
+<div class="portfolio">
 
-    <div class="whatsapp">
-        📱 088804169277
-    </div>
+<div class="portfolio-item">
+Poster Turnamen
+</div>
 
-    <br>
+<div class="portfolio-item">
+Poster Joki Rank
+</div>
 
-    <a href="https://wa.me/6288804169277" class="btn">
-        Chat WhatsApp
-    </a>
+<div class="portfolio-item">
+Top Up Diamond
+</div>
+
+</div>
+
+</section>
+
+<section class="section" id="testimoni">
+
+<div class="title">
+<h2>Testimoni</h2>
+</div>
+
+<div class="testimonials">
+
+<div class="testimonial">
+⭐⭐⭐⭐⭐<br><br>
+"Pengerjaan cepat dan hasil memuaskan."
+</div>
+
+<div class="testimonial">
+⭐⭐⭐⭐⭐<br><br>
+"Bracket turnamen rapi dan profesional."
+</div>
+
+<div class="testimonial">
+⭐⭐⭐⭐⭐<br><br>
+"Desain sesuai request dan bebas revisi."
+</div>
+
+</div>
+
+</section>
+
+<section class="section cta" id="kontak">
+
+<h2>Siap Bekerja Sama?</h2>
+
+<p>Hubungi kami sekarang untuk konsultasi gratis.</p>
+
+<a href="https://wa.me/6288804169277" class="btn">
+Chat WhatsApp
+</a>
 
 </section>
 
 <footer>
-    © 2026 Yume Store - All Rights Reserved
+© 2026 Yume Store • All Rights Reserved
 </footer>
+
+<a class="whatsapp"
+href="https://wa.me/6288804169277">
+💬
+</a>
 
 </body>
 </html>
