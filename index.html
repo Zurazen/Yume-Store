@@ -115,8 +115,27 @@ transparent 55%);
 .hero-logo{
 width:180px;
 margin-bottom:20px;
-animation:float 4s ease-in-out infinite;
-filter:drop-shadow(0 0 25px #b44cff);
+animation:
+float 4s ease-in-out infinite,
+glow 2s infinite;
+}
+
+@keyframes glow{
+
+0%{
+filter:drop-shadow(0 0 10px #b44cff);
+}
+
+50%{
+filter:
+drop-shadow(0 0 30px #b44cff)
+drop-shadow(0 0 60px #b44cff);
+}
+
+100%{
+filter:drop-shadow(0 0 10px #b44cff);
+}
+
 }
 
 .hero h1{
@@ -344,8 +363,15 @@ background:#10051e;
 border:1px solid rgba(180,76,255,.3);
 padding:30px;
 border-radius:20px;
+transition:.3s;
 }
 
+.service-box:hover{
+transform:translateY(-8px);
+box-shadow:
+0 0 20px rgba(180,76,255,.3),
+0 0 50px rgba(180,76,255,.15);
+}
 .service-box h3{
 margin-bottom:25px;
 font-size:30px;
